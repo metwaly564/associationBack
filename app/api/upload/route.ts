@@ -39,11 +39,11 @@ export async function POST(request: NextRequest) {
     // Validate file type
     const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'application/pdf'];
     const fileExt = file.name.split('.').pop()?.toLowerCase();
-    
+
     // More lenient PDF check - some systems might report different MIME types
     const isPDF = file.type.includes('pdf') || fileExt === 'pdf';
     const isImage = allowedTypes.some(type => type.includes('image')) && file.type.includes('image');
-    
+
     if (!isPDF && !isImage && !allowedTypes.includes(file.type)) {
       console.log('❌ File type not allowed:', { fileType: file.type, fileExt, fileName: file.name });
       return NextResponse.json(
@@ -66,9 +66,8 @@ export async function POST(request: NextRequest) {
 
     console.log('✅ File saved:', filename);
 
-    // Return public URL - full URL for frontend access
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001';
-    const url = `${baseUrl}/uploads/${filename}`;
+    // Return public URL - relative URL for frontend access
+    const url = `/uploads/${filename}`;
 
     console.log('📡 Returning URL:', url);
 
@@ -86,7 +85,7 @@ export async function POST(request: NextRequest) {
     console.error('❌ Error uploading file:', error);
     return NextResponse.json(
       { error: 'حدث خطأ أثناء رفع الملف', details: error.message },
-      { 
+      {
         status: 500,
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
