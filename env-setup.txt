@@ -1,0 +1,17 @@
+# انسخ هذا المحتوى إلى ملف .env.local في مجلد admin-cms
+
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=association_db
+DB_USER=postgres
+DB_PASSWORD=your_password_here
+
+# JWT Secret (استخدم مفتاح قوي في الإنتاج - minimum 32 characters)
+JWT_SECRET=sd6f54sd6f54sdf654sd6f5s4df6s5d4fs6d5f4sd
+
+# Base URL for uploaded files access
+NEXT_PUBLIC_BASE_URL=http://localhost:3001
+
+# API Base URL
+NEXT_PUBLIC_API_BASE=/api

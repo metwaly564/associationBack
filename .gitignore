@@ -1,0 +1,12 @@
+# Backend .gitignore 
+node_modules/ 
+.next/ 
+.env 
+.env.local 
+.env.production 
+*.log 
+.DS_Store 
+public/uploads/* 
+!public/uploads/.gitkeep 
+.vercel
+association_dbBackup
